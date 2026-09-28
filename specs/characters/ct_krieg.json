@@ -2,7 +2,7 @@
   "id": "ct_sas",
   "label": "CS2 SAS (CT)",
   "character": "Krieg",
-  "description": "Counter-Strike 2 default CT (SAS agent) body and first-person arms over Krieg. NON-DISTRIBUTABLE: Valve assets.",
+  "description": "Reference skin: a Source 2 agent body and first-person arms over Krieg.",
   "assets_root": "scratch/charswap_assets/ct_sas",
   "glb": "ctm_sas.glb",
   "scale": 2.3978,

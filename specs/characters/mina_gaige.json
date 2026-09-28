@@ -2,7 +2,7 @@
   "id": "mina",
   "label": "Mina (Deadlock)",
   "character": "Gaige",
-  "description": "Deadlock's Mina (hero rig 'vampirebat') over Gaige: body, head, hair, bag and charm on the body mesh, arms cut from the body for first person. Gun, vial and umbrella left out. NON-DISTRIBUTABLE: Valve assets.",
+  "description": "Reference skin: a Source 2 hero over Gaige, arms cut from the body for first person; held items left out.",
   "assets_root": "scratch/charswap_assets/mina",
   "glb": "export/models/heroes_wip/vampirebat/vampirebat.glb",
   "scale": 1.644,

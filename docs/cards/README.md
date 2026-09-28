@@ -10,6 +10,7 @@ when you reach its stage, not all of them up front.
 | [spec.md](spec.md) | the parts, balance, title, stats, options of a weapon |
 | [verify.md](verify.md) | installing, running the loop, reading preflight and triage |
 | [ship.md](ship.md) | the Armory, packs and releases |
+| [characters.md](characters.md) | putting a character model on a vault hunter |
 | [gotchas.md](gotchas.md) | the short list of things that bit, with the F-number to search for |
 
 Reference (long, read on demand): `../PARTGEN_SPEC.md` (every spec key), `../FAILURE_MODES.md`

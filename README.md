@@ -8,7 +8,7 @@ drops in the world and survives save and load. None of the game's files are chan
 finished weapon ships as a small **weapon pack** that anyone with the **Armory** mod can
 install by double-clicking.
 
-The repo contains three things:
+The repo contains three things (and the character-skin tool, below):
 
 | | |
 |---|---|
@@ -125,13 +125,29 @@ installer and an install guide inside. Anyone with the Armory installs it the sa
 installed the Armory. The full pack format and the publishing checklist are in
 [`armory/CREATING_PACKS.md`](armory/CREATING_PACKS.md).
 
+## Make a character skin
+
+The same repo puts a character model on a vault hunter: your model's body and first-person
+arms on the game's own skeleton, so every animation still plays. It is a shorter road than a
+weapon: no cutting into parts, no balance.
+
+```
+python -m bl2_charswap build   specs\characters\myskin_krieg.json
+python -m bl2_charswap install specs\characters\myskin_krieg.json
+```
+
+Copy one of the two reference specs in `specs\characters\`, point it at your glTF model and
+textures, run `build`, then `install` to try it in game. Pack it the same way as a weapon,
+with a `characters` entry in `packs\myskin.json`. The spec keys, the vault hunters' mesh
+names and the things that bite are in [`docs/cards/characters.md`](docs/cards/characters.md).
+
 ## Where things are
 
 | Read this | When |
 |---|---|
 | [`armory/CREATING_PACKS.md`](armory/CREATING_PACKS.md) | The complete guide from model to published pack, and the pack format. |
 | [`armory/Armory/README.md`](armory/Armory/README.md) | The player-facing Armory guide: install, spawn, uninstall, troubleshooting. |
-| [`docs/cards/`](docs/cards/) | One short page per stage: setup, retarget, spec, verify, ship, gotchas. |
+| [`docs/cards/`](docs/cards/) | One short page per stage: setup, retarget, spec, verify, ship, characters, gotchas. |
 | [`docs/PARTGEN_SPEC.md`](docs/PARTGEN_SPEC.md) | Every key a weapon spec can hold. |
 | [`docs/FINDINGS.md`](docs/FINDINGS.md) | How Borderlands 2 weapons work under the hood: gestalt meshes, sockets, packages, the runtime. |
 | [`docs/FAILURE_MODES.md`](docs/FAILURE_MODES.md) | Everything that has gone wrong so far and how the tools recognise it. |
