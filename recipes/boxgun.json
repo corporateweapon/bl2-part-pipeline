@@ -1,0 +1,54 @@
+{
+ "name": "BOXGUN",
+ "_comment": "The pipeline's own example: examples/boxgun/model.glb (CC0, built by examples/boxgun/make_boxgun.py) onto the assault-rifle gestalt. Authored in the add-on frame at UE scale, so the frame is the identity. This is the recipe to copy for a new weapon on the AR host.",
+ "source": {
+  "glb": "examples/boxgun/model.glb",
+  "body_match": "boxgun",
+  "body_exclude": "arms",
+  "attachments": ["muzzle"],
+  "frame": {"preset": "identity"}
+ },
+ "host": {
+  "mesh_path": "Weap_AssaultRifles.GestaltDef_AssaultRifle_GestaltSkeletalMesh",
+  "fragment_table": null,
+  "reference_fragment": "AR_Barrel_Vladof",
+  "muzzle_socket": "AR_Barrel_Vladof_Muzzle",
+  "muzzle_socket_default": [0.0, 0.0, 0.0]
+ },
+ "placement": {"anchor_group": "trigger", "anchor_bone": "Trigger", "scale": 1.0},
+ "bones": {"map": {"clip": "Mag", "trigger": "Trigger", "bolt": "ChargeHandle"}, "static": "Root"},
+ "checks": [
+  {"kind": "longest_axis_y"},
+  {"kind": "muzzle_neg_y"},
+  {"kind": "mag_hangs_down", "group": "clip", "below": "floor"},
+  {"kind": "highest_point", "y_frac_lt": 0.35},
+  {"kind": "group_side", "group": "bolt", "axis": "x", "lt": -2.0, "level": "warn"},
+  {"kind": "attachment_muzzle", "name": "muzzle", "tol_y": 4.0, "tol_x": 3.0},
+  {"kind": "stock_behind_root"}
+ ],
+ "rule_order": ["BOXGUN_Barrel", "BOXGUN_Stock", "BOXGUN_Grip"],
+ "fragments": [
+  {"name": "BOXGUN_Body", "template": "AR_Body_Vladof", "rule": "remainder", "bone": null},
+  {"name": "BOXGUN_Barrel", "template": "AR_Barrel_Vladof", "rule": {"front_y_lt": -20.5}, "bone": "Barrel"},
+  {"name": "BOXGUN_Grip", "template": "AR_Grip_Vladof", "rule": {"cy_gt": 4.0, "cz_lt": -0.4}, "bone": "Root"},
+  {"name": "BOXGUN_Stock", "template": "AR_Stock_Vladof", "rule": {"cy_gt": 10.5}, "bone": "Root"},
+  {"name": "BOXGUN_Mag", "template": "AR_Body_Vladof", "subset_of": "BOXGUN_Body", "majority_group": "clip", "bone": "Mag", "export": false}
+ ],
+ "sockets": [
+  {"socket": "Muzzle", "fragment": "BOXGUN_Barrel", "point": {"ring": "front", "of": "BOXGUN_Barrel", "tol": 0.6, "xz_from_attachment": "muzzle"}},
+  {"socket": "FrontSight", "fragment": "BOXGUN_Barrel", "point": {"extreme": "highest", "of": "BOXGUN_Barrel"}},
+  {"socket": "RearSight", "fragment": "BOXGUN_Body", "point": {"extreme": "highest", "of": "BOXGUN_Body", "where": {"y_between": [-12.0, -4.0]}},
+   "fallback": {"resolved": "FrontSight"}},
+  {"socket": "EjectPort", "fragment": "BOXGUN_Body", "point": {"bone_centroid": "ChargeHandle", "of": "BOXGUN_Body"},
+   "fallback": {"resolved": "RearSight"}},
+  {"socket": "EyeSocket2", "fragment": "BOXGUN_Barrel", "point": {"sight_line": {"y": 40.0, "x": 0.0, "rear": "RearSight", "front": "FrontSight"}}}
+ ],
+ "output": {
+  "package_name": "PipelineMeshesBoxgun",
+  "mesh_name": "PL_AR_Gestalt_Mesh",
+  "package": "scratch/PipelineMeshesBoxgun.upk",
+  "report": "scratch/boxgun_retarget_report.json",
+  "captures": "scratch/captures",
+  "preview_prefix": "boxgun_retarget"
+ }
+}

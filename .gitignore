@@ -1,0 +1,38 @@
+# generated SDK mod output (template only is committed)
+sdk_mod/*
+!sdk_mod/README.md
+# source meshes: put yours in assets/ (only the Boxgun example is committed)
+assets/
+*.glb
+!examples/**/*.glb
+*.fbx
+*.psk
+*.pskx
+# tool binaries, decompressed packages and build output
+tools/
+scratch/
+*.upk
+*.tfc
+*.pck
+__pycache__/
+*.pyc
+.venv/
+backup/
+dist/
+*.egg-info/
+# only the Boxgun's baselines are committed; other run captures stay local
+docs/captures/*
+!docs/captures/m1_stock_full.png
+!docs/captures/boxgun_stock_firstperson.png
+# maintainer's local notes, private pack manifests and licences (not published)
+.claude/
+docs/history/
+docs/PIPELINE_PLAYBOOK.md
+docs/HANDOFF_NEXT.md
+docs/RELEASE_PLAN_NEXUS.md
+docs/TPS_LASER_CRYO_PLAN.md
+armory/NEXUS_PAGE.md
+licenses/
+packs/*.json
+!packs/boxgun.json
+specs/armory.json

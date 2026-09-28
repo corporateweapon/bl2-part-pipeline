@@ -1,0 +1,6 @@
+[project]
+name = "PipelineCharacters"
+version = "0.1.0"
+description = "Character model swaps: pick a replacement body/arms per vault hunter (skins built by bl2_charswap)."
+authors = [{ name = "44M0N" }]
+requires-python = ">=3.11"

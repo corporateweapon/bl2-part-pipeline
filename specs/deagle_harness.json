@@ -1,0 +1,283 @@
+{
+ "schema_version": 1,
+ "mod": {
+  "name": "PipelineDEAGLEHarness",
+  "author": "44M0N",
+  "version": "0.0.1",
+  "description": "The CS2 Desert Eagle on the pistol gestalt (Jakobs host, balance cloned from the Maggie), own package PipelineMeshesDeagle.upk and texture PipelineTexturesDeagle.upk. NON-DISTRIBUTABLE TEST: the model and textures are Valve's; nothing derived from them may be published."
+ },
+ "package": "PipelineMeshesDeagle",
+ "mesh_path": "PipelineMeshesDeagle.PL_PS_Gestalt_Mesh",
+ "package_file": "../scratch/PipelineMeshesDeagle.upk",
+ "weapon_type": "Pistol",
+ "fragments": [
+  {
+   "name": "DEAGLE_Barrel",
+   "template_fragment": "Pistol_Barrel_Jakobs",
+   "first_index": 111489,
+   "num_primitives": 2006,
+   "dz": 0.0,
+   "sockets": "all",
+   "dz_sockets": [],
+   "socket_overrides": {
+    "Muzzle": [
+     0.024,
+     -23.684,
+     5.564
+    ],
+    "FrontSight": [
+     0.0,
+     -22.889,
+     12.681
+    ]
+   },
+   "bounds_override": {
+    "origin": [
+     0.048,
+     -10.34,
+     3.624
+    ],
+    "extent": [
+     2.107,
+     13.345,
+     4.056
+    ],
+    "radius": 14.106
+   }
+  },
+  {
+   "name": "DEAGLE_Body",
+   "template_fragment": "Pistol_Body_Jakobs",
+   "first_index": 68562,
+   "num_primitives": 14309,
+   "dz": 0.0,
+   "sockets": "all",
+   "dz_sockets": [],
+   "socket_overrides": {
+    "RearSight": [
+     0.0,
+     9.31,
+     12.692
+    ],
+    "EjectPort": [
+     3.087,
+     -3.169,
+     6.115
+    ],
+    "EyeSocket2": [
+     -0.0,
+     82.755,
+     7.718
+    ]
+   },
+   "bounds_override": {
+    "origin": [
+     -0.028,
+     4.473,
+     -3.73
+    ],
+    "extent": [
+     2.997,
+     11.448,
+     11.422
+    ],
+    "radius": 16.447
+   }
+  },
+  {
+   "name": "DEAGLE_Grip",
+   "template_fragment": "Pistol_Grip_Jakobs",
+   "first_index": 117507,
+   "num_primitives": 1952,
+   "dz": 0.0,
+   "sockets": "all",
+   "dz_sockets": [],
+   "bounds_override": {
+    "origin": [
+     0.048,
+     8.396,
+     -5.881
+    ],
+    "extent": [
+     2.332,
+     4.758,
+     9.271
+    ],
+    "radius": 10.678
+   }
+  }
+ ],
+ "parts": [
+  {
+   "part_name": "DEAGLE_Barrel",
+   "slot": "WP_Barrel",
+   "outer": "GD_Weap_Pistol.Barrel",
+   "fragment": "DEAGLE_Barrel",
+   "template_part": "GD_Weap_Pistol.Barrel.Pistol_Barrel_Jakobs_Maggie",
+   "register_in": [],
+   "overrides": {
+    "weapon_attribute_effects": [
+     {
+      "attribute": "D_Attributes.Weapon.WeaponDamage",
+      "modifier": "MT_Scale",
+      "value": 0.4
+     },
+     {
+      "attribute": "D_Attributes.Weapon.WeaponFireInterval",
+      "modifier": "MT_Scale",
+      "value": 0.3
+     },
+     {
+      "attribute": "D_Attributes.Weapon.WeaponPerShotAccuracyImpulse",
+      "modifier": "MT_Scale",
+      "value": 0.5
+     },
+     {
+      "attribute": "D_Attributes.Weapon.WeaponClipSize",
+      "modifier": "MT_PostAdd",
+      "value": -2.0
+     }
+    ],
+    "external_attribute_effects": [
+     {
+      "attribute": "D_Attributes.GameplayAttributes.PlayerCriticalHitBonus",
+      "modifier": "MT_Scale",
+      "value": 1.0
+     }
+    ]
+   }
+  },
+  {
+   "part_name": "DEAGLE_Body",
+   "slot": "WP_Body",
+   "outer": "GD_Weap_Pistol.Body",
+   "fragment": "DEAGLE_Body",
+   "template_part": "GD_Weap_Pistol.Body.Pistol_Body_Jakobs_4",
+   "register_in": []
+  },
+  {
+   "part_name": "DEAGLE_Grip",
+   "slot": "WP_Grip",
+   "outer": "GD_Weap_Pistol.Grip",
+   "fragment": "DEAGLE_Grip",
+   "template_part": "GD_Weap_Pistol.Grip.Pistol_Grip_Jakobs",
+   "register_in": [],
+   "overrides": {
+    "clear_arrays": [
+     "PrefixList"
+    ]
+   }
+  },
+  {
+   "part_name": "DEAGLE_Sight",
+   "slot": "WP_Sight",
+   "outer": "GD_Weap_Pistol.Sight",
+   "fragment": null,
+   "template_part": "GD_Weap_Pistol.Sight.Pistol_Sight_None",
+   "register_in": []
+  },
+  {
+   "part_name": "DEAGLE_Accessory",
+   "outer": "GD_Weap_Pistol.Accessory",
+   "fragment": null,
+   "template_part": "GD_Weap_Pistol.Accessory.Pistol_Accessory_None",
+   "register_in": []
+  },
+  {
+   "part_name": "DEAGLE_Material",
+   "slot": "WP_Material",
+   "outer": "GD_Weap_Pistol.ManufacturerMaterials",
+   "fragment": null,
+   "template_part": "GD_Weap_Pistol.ManufacturerMaterials.Mat_Jakobs_5_Legendary",
+   "register_in": [],
+   "overrides": {
+    "object_properties": {
+     "Material": "Common_GunMaterials.Materials.Pistol.Mati_DEAGLE"
+    }
+   }
+  }
+ ],
+ "options": {
+  "register_at": "menu",
+  "keep_alive": true,
+  "save_roundtrip": true,
+  "validate_override": true,
+  "test_harness": true,
+  "force_template_fragment_on_map_load": null,
+  "menu_ticks": 600,
+  "harness_auto": true,
+  "harness_fov": 100,
+  "harness_behindview": true,
+  "status_path": "${REPO}\\scratch\\PipelineDEAGLEHarness_status.json",
+  "harness_capture_view": "first",
+  "harness_timing": "seconds",
+  "own_gestalt": true
+ },
+ "mod_name": "PipelineDEAGLE",
+ "balances": [
+  {
+   "name": "Pistol_Jakobs_5_DEAGLE",
+   "outer": "GD_Weap_Pistol.A_Weapons_Legendary",
+   "template_balance": "GD_Weap_Pistol.A_Weapons_Legendary.Pistol_Jakobs_5_Maggie",
+   "part_lists": {
+    "BarrelPartData": [
+     "DEAGLE_Barrel"
+    ],
+    "BodyPartData": [
+     "DEAGLE_Body"
+    ],
+    "GripPartData": [
+     "DEAGLE_Grip"
+    ],
+    "SightPartData": [
+     "DEAGLE_Sight"
+    ],
+    "Accessory1PartData": [
+     "DEAGLE_Accessory"
+    ],
+    "MaterialPartData": [
+     "DEAGLE_Material"
+    ]
+   },
+   "title": {
+    "name": "Title_Legendary_DEAGLE",
+    "outer": "GD_Weap_Pistol.Name.Title_Jakobs",
+    "template": "GD_Weap_Pistol.Name.Title_Jakobs.Title_Legendary_Maggie",
+    "part_name": "Desert Eagle",
+    "red_text": "One tap.<br><font color=\"#5ff5ff\">.50 Action Express. Seven rounds. Iron sights. Aim for the head.</font><br><font color=\"#ffffff\">+40% Weapon Damage, +100% Critical Hit Damage<br>x1.3 Shot interval, heavy recoil</font>",
+    "on_parts": [
+     "DEAGLE_Barrel"
+    ],
+    "name_is_unique": true
+   },
+   "pools": [
+    "GD_Itempools.WeaponPools.Pool_Weapons_Pistols_06_Legendary"
+   ],
+   "suppress_prefix": true
+  }
+ ],
+ "extra_packages": [
+  {
+   "name": "PipelineTexturesDeagle",
+   "file": "../scratch/PipelineTexturesDeagle.upk"
+  }
+ ],
+ "materials": [
+  {
+   "name": "Mati_DEAGLE",
+   "outer": "Common_GunMaterials.Materials.Pistol",
+   "parent": "Item_ClassMods.Mat.Master_ClassMod",
+   "texture_parameters": {
+    "p_Diffuse": "PipelineTexturesDeagle.DEAGLE_Albedo",
+    "p_Normal": "PipelineTexturesDeagle.DEAGLE_Normal"
+   },
+   "vector_parameters": {},
+   "scalar_parameters": {}
+  }
+ ],
+ "fire_sound": {
+  "wav": "../scratch/cs2_deagle/sounds/weapons/deagle/deagle_01.wav",
+  "volume": 15,
+  "mute_stock": true
+ }
+}

@@ -1,0 +1,129 @@
+{
+  "id": "mina",
+  "label": "Mina (Deadlock)",
+  "character": "Gaige",
+  "description": "Deadlock's Mina (hero rig 'vampirebat') over Gaige: body, head, hair, bag and charm on the body mesh, arms cut from the body for first person. Gun, vial and umbrella left out. NON-DISTRIBUTABLE: Valve assets.",
+  "assets_root": "scratch/charswap_assets/mina",
+  "glb": "export/models/heroes_wip/vampirebat/vampirebat.glb",
+  "scale": 1.644,
+  "source_package": "scratch/decomp/GD_Tulip_Mechro_Streaming_SF.upk",
+  "texture_package": "PipelineTexturesMina",
+  "hide_mesh_prefixes": [
+    "CD_Heads_Mechro"
+  ],
+  "material": {
+    "parent": "Item_ClassMods.Mat.Master_ClassMod",
+    "outer": "Common_GunMaterials.Materials.Pistol"
+  },
+  "meshes": [
+    {
+      "name": "Mina_Body",
+      "package": "PipelineMeshesMina",
+      "source_mesh": "Tulip_Char_Mechromancer.Mesh.Skel_MechromancerBody",
+      "prim_tiles": {
+        "body:0": "upper",
+        "body:1": "lower",
+        "body:2": "charm",
+        "body:3": "bag",
+        "head:0": "eyes",
+        "head:1": "hair",
+        "head:2": "head"
+      },
+      "atlas": {
+        "size": 4096,
+        "normal_size": 256,
+        "tiles": {
+          "upper": [
+            0,
+            0,
+            2048,
+            2048
+          ],
+          "lower": [
+            2048,
+            0,
+            2048,
+            2048
+          ],
+          "head": [
+            0,
+            2048,
+            2048,
+            2048
+          ],
+          "hair": [
+            2048,
+            2048,
+            1024,
+            1024
+          ],
+          "bag": [
+            3072,
+            2048,
+            1024,
+            1024
+          ],
+          "charm": [
+            2048,
+            3072,
+            512,
+            512
+          ],
+          "eyes": [
+            2560,
+            3072,
+            512,
+            512
+          ]
+        },
+        "sources": {
+          "upper": {
+            "color": "tex/models/heroes_wip/vampirebat/materials/mina_upper_color_tga_1cf2c09c.png",
+            "ao": "tex/models/heroes_wip/vampirebat/materials/mina_upper_ao_tga_5aebc4aa.png"
+          },
+          "lower": {
+            "color": "tex/models/heroes_wip/vampirebat/materials/mina_lower_color_tga_48124993.png",
+            "ao": "tex/models/heroes_wip/vampirebat/materials/mina_lower_ao_tga_2f39b512.png"
+          },
+          "head": {
+            "color": "tex/models/heroes_wip/vampirebat/materials/mina_head_material__color_png_77d536c8.png",
+            "ao": "tex/models/heroes_wip/vampirebat/materials/mina_head_ao_psd_91cf7949.png"
+          },
+          "hair": {
+            "color": "tex/models/heroes_wip/vampirebat/materials/mina_hair_color_tga_776ce20d.png",
+            "ao": "tex/models/heroes_wip/vampirebat/materials/mina_hair_ao_tga_96a79fe2.png"
+          },
+          "bag": {
+            "color": "tex/models/heroes_wip/vampirebat/materials/mina_bag_color_tga_4c770cbe.png",
+            "ao": "tex/models/heroes_wip/vampirebat/materials/mina_bag_ao_tga_c989f9c2.png"
+          },
+          "charm": {
+            "color": "tex/models/heroes_wip/vampirebat/materials/mina_charm_color_png_984ee5d6.png",
+            "ao": "tex/models/heroes_wip/vampirebat/materials/mina_charm_ao_png_dbd09d76.png"
+          },
+          "eyes": {
+            "color": "tex/models/heroes_wip/vampirebat/materials/vampire_bat_eye_color_psd_e6346769.png"
+          }
+        }
+      }
+    },
+    {
+      "name": "Mina_Arms",
+      "package": "PipelineMeshesMinaArms",
+      "source_mesh": "Tulip_Char_Mechromancer.Mesh.Hands_Mechromancer",
+      "textures_from": "Mina_Body",
+      "keep_bones": [
+        "arm_upper_L",
+        "arm_upper_R"
+      ],
+      "prim_tiles": {
+        "body:0": "upper",
+        "body:1": "lower"
+      },
+      "subtree_scale": {
+        "hand_L": 1.2,
+        "hand_R": 1.2
+      }
+    }
+  ]
+}

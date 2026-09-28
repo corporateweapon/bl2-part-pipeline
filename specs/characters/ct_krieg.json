@@ -1,0 +1,69 @@
+{
+  "id": "ct_sas",
+  "label": "CS2 SAS (CT)",
+  "character": "Krieg",
+  "description": "Counter-Strike 2 default CT (SAS agent) body and first-person arms over Krieg. NON-DISTRIBUTABLE: Valve assets.",
+  "assets_root": "scratch/charswap_assets/ct_sas",
+  "glb": "ctm_sas.glb",
+  "scale": 2.3978,
+  "source_package": "scratch/decomp/GD_Lilac_Psycho_Streaming_SF.upk",
+  "texture_package": "PipelineTexturesCT",
+  "hide_mesh_prefixes": ["CD_Heads_Psycho"],
+  "material": {
+    "parent": "Item_ClassMods.Mat.Master_ClassMod",
+    "outer": "Common_GunMaterials.Materials.Pistol"
+  },
+  "meshes": [
+    {
+      "name": "CT_Body",
+      "package": "PipelineMeshesCT",
+      "source_mesh": "Lilac_Char_Psycho.Mesh.Skel_PsychoBody",
+      "prim_tiles": {
+        "thirdperson_body:1": "gasmask",
+        "thirdperson_body:2": "legs",
+        "thirdperson_body:3": "body",
+        "thirdperson_default_gloves:0": "gloves"
+      },
+      "atlas": {
+        "size": 2048,
+        "tiles": {
+          "body": [0, 0, 1024, 1024],
+          "legs": [1024, 0, 1024, 512],
+          "gasmask": [0, 1024, 1024, 1024],
+          "gloves": [1024, 1024, 1024, 1024],
+          "lens_solid": [1024, 512, 1024, 512]
+        },
+        "sources": {
+          "body": {"color": "ctm_sas_body_color_psd_d02da1ae.png", "ao": "ctm_sas_body_ao_psd_4476562.png", "normal": "ctm_sas_body_normal_psd_5a88fc4b.png"},
+          "legs": {"color": "ctm_sas_legs_color_psd_ae899bf2.png", "ao": "ctm_sas_legs_ao_psd_526cc0d3.png", "normal": "ctm_sas_legs_normal_psd_fd33a172.png"},
+          "gasmask": {"color": "ctm_sas_head_gasmask_color_psd_52d38e2c.png", "ao": "ctm_sas_head_gasmask_ao_psd_c9930b8c.png", "normal": "ctm_sas_head_gasmask_normal_psd_4086d072.png"},
+          "gloves": {"color": "glove_hardknuckle_black_color_psd_8f00aa00.png", "ao": "glove_hardknuckle_ao_psd_5be17a0d.png", "normal": "glove_hardknuckle_normal_tga_a8df881b.png"},
+          "lens_solid": {"solid": [60, 58, 58]}
+        }
+      }
+    },
+    {
+      "name": "CT_Arms",
+      "package": "PipelineMeshesCTArms",
+      "source_mesh": "Lilac_Char_Psycho.Mesh.Skel_Psycho_Arms",
+      "prim_tiles": {
+        "firstperson_default_gloves_arms:0": "bare_arm",
+        "firstperson_default_gloves_arms:1": "gloves",
+        "firstperson_sleeves:0": "sleeve"
+      },
+      "atlas": {
+        "size": 2048,
+        "tiles": {
+          "sleeve": [0, 0, 1024, 2048],
+          "gloves": [1024, 0, 1024, 1024],
+          "bare_arm": [1024, 1024, 512, 1024]
+        },
+        "sources": {
+          "sleeve": {"color": "sleeve_sas_color_psd_b45d8ff2.png", "ao": "sleeve_sas_ao_psd_e8317d98.png", "normal": "sleeve_sas_normal_psd_b5d490b7.png"},
+          "gloves": {"color": "glove_hardknuckle_black_color_psd_8f00aa00.png", "ao": "glove_hardknuckle_ao_psd_5be17a0d.png", "normal": "glove_hardknuckle_normal_tga_a8df881b.png"},
+          "bare_arm": {"color": "bare_arm_133_color_psd_5b76e0cf.png", "ao": "bare_arm_ao_tga_d61b9f8.png", "normal": "bare_arm_normal_tga_c9fefc2d.png"}
+        }
+      }
+    }
+  ]
+}

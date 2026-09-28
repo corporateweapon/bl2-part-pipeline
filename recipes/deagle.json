@@ -1,0 +1,178 @@
+{
+ "name": "DEAGLE",
+ "_comment": "The CS2 Desert Eagle onto the pistol gestalt (first weapon on this host). Non-distributable test: the glb and anything derived from it stay out of the repo. Pistol fragment table built from the OpenBLCMM dump per docs/history/M9_NOTES.md section 1 (scratch/gestalt_PS_fragments.txt, 59 rows, no repeats).",
+ "source": {
+  "glb": "assets/deagle/model.glb",
+  "body_match": "deagle",
+  "body_exclude": "arms",
+  "attachments": [
+   "muzzle",
+   "bore",
+   "eject",
+   "sight",
+   "grip"
+  ],
+  "frame": {
+   "preset": "cs2_gltf"
+  }
+ },
+ "host": {
+  "mesh_path": "Weap_Pistol.GestaltDef_Pistol_GestaltSkeletalMesh",
+  "fragment_table": "scratch/gestalt_PS_fragments.txt",
+  "reference_fragment": "Pistol_Barrel_Jakobs",
+  "muzzle_socket": "Pistol_Barrel_Jakobs_Muzzle",
+  "muzzle_socket_default": [
+   0.0,
+   -45.0,
+   6.6
+  ]
+ },
+ "placement": {
+  "anchor_group": "hammer",
+  "anchor_bone": "hammer",
+  "scale": 1.35,
+  "_note": "no Trigger bone on the pistol gestalt; hammer->hammer is the only same-named pair. 1.35 matches the grip height to the stock Jakobs grip (~18 u); 2.17 would reach the stock muzzle socket and is too big."
+ },
+ "bones": {
+  "map": {
+   "hammer": "hammer"
+  },
+  "static": "Root",
+  "_note": "hammer head sits inside the hammer geometry (it is the anchor). Slide head is ~1.7 u above the slide, no Clip_* near the mag: Root until anim_probe says otherwise."
+ },
+ "checks": [
+  {
+   "kind": "longest_axis_y"
+  },
+  {
+   "kind": "muzzle_neg_y"
+  },
+  {
+   "kind": "mag_hangs_down",
+   "group": "clip",
+   "below": "floor"
+  },
+  {
+   "kind": "highest_point",
+   "y_frac_lt": 0.35,
+   "level": "warn"
+  },
+  {
+   "kind": "attachment_muzzle",
+   "name": "muzzle",
+   "tol_y": 4.0,
+   "tol_x": 3.0
+  },
+  {
+   "kind": "attachment_above_centre",
+   "name": "sight"
+  },
+  {
+   "kind": "attachment_side",
+   "name": "eject",
+   "lt": 0.0,
+   "level": "warn"
+  }
+ ],
+ "rule_order": [
+  "DEAGLE_Barrel",
+  "DEAGLE_Grip"
+ ],
+ "_order_note": "fragments[] is the EXPORT order (it fixes each fragment's index range in the package and so the spec's first_index); rule_order is the order the face rules are tried in, first match wins, the remainder is the body",
+ "fragments": [
+  {
+   "name": "DEAGLE_Body",
+   "template": "Pistol_Body_Jakobs",
+   "rule": "remainder",
+   "bone": null
+  },
+  {
+   "name": "DEAGLE_Barrel",
+   "template": "Pistol_Barrel_Jakobs",
+   "rule": {
+    "front_y_lt": -7.0
+   },
+   "bone": "Root"
+  },
+  {
+   "name": "DEAGLE_Grip",
+   "template": "Pistol_Grip_Jakobs",
+   "rule": {
+    "cy_gt": 6.5,
+    "cz_lt": -3.0
+   },
+   "bone": "Root"
+  }
+ ],
+ "sockets": [
+  {
+   "socket": "Muzzle",
+   "fragment": "DEAGLE_Barrel",
+   "point": {
+    "ring": "front",
+    "of": "DEAGLE_Barrel",
+    "tol": 0.6
+   }
+  },
+  {
+   "socket": "FrontSight",
+   "fragment": "DEAGLE_Barrel",
+   "point": {
+    "extreme": "highest",
+    "of": "DEAGLE_Barrel"
+   }
+  },
+  {
+   "socket": "RearSight",
+   "fragment": "DEAGLE_Body",
+   "point": {
+    "extreme": "highest",
+    "of": "DEAGLE_Body",
+    "where": {
+     "y_between": [
+      5.0,
+      13.0
+     ]
+    }
+   },
+   "fallback": {
+    "resolved": "FrontSight"
+   }
+  },
+  {
+   "socket": "EyeSocket2",
+   "fragment": "DEAGLE_Body",
+   "point": {
+    "sight_line": {
+     "y": 82.755,
+     "x": 0.0,
+     "rear": "RearSight",
+     "front": "FrontSight"
+    }
+   }
+  },
+  {
+   "socket": "EjectPort",
+   "fragment": "DEAGLE_Body",
+   "point": {
+    "attachment": "eject",
+    "push_outside": {
+     "of": "DEAGLE_Body",
+     "band": 3.0,
+     "margin": 0.3
+    }
+   },
+   "fallback": {
+    "resolved": "RearSight"
+   }
+  }
+ ],
+ "output": {
+  "package_name": "PipelineMeshesDeagle",
+  "mesh_name": "PL_PS_Gestalt_Mesh",
+  "package": "scratch/PipelineMeshesDeagle.upk",
+  "report": "scratch/deagle_retarget_report.json",
+  "captures": "scratch/captures",
+  "preview_prefix": "deagle_retarget"
+ }
+}

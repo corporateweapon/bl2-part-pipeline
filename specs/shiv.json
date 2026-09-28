@@ -1,0 +1,360 @@
+{
+ "schema_version": 1,
+ "mod": {
+  "name": "PipelineSHIV",
+  "author": "44M0N",
+  "version": "0.2.0",
+  "description": "The Busted Flush (Shiv's shotgun, Deadlock) on the SHOTGUN gestalt (Jakobs host, balance cloned from the Striker), own package PipelineMeshesShiv.upk and texture PipelineTexturesShiv.upk. RMB is a second trigger (alt_fire): no ADS, 2 rounds for a 3x damage shot with heavy recoil and a knockback. NON-DISTRIBUTABLE TEST: the model, textures and sounds are Valve's; nothing derived from them may be published."
+ },
+ "package": "PipelineMeshesShiv",
+ "mesh_path": "PipelineMeshesShiv.PL_SG_Gestalt_Mesh",
+ "package_file": "../scratch/PipelineMeshesShiv.upk",
+ "weapon_type": "Shotgun",
+ "fragments": [
+  {
+   "name": "SHIV_Barrel",
+   "template_fragment": "SG_Barrel_Jakobs",
+   "first_index": 84720,
+   "num_primitives": 1454,
+   "dz": 0.0,
+   "sockets": "all",
+   "dz_sockets": [],
+   "socket_overrides": {
+    "Muzzle": [
+     0.0,
+     -49.289,
+     6.992
+    ],
+    "FrontSight": [
+     2.246,
+     -17.354,
+     13.942
+    ]
+   },
+   "bounds_override": {
+    "origin": [
+     -1.469,
+     -33.246,
+     6.273
+    ],
+    "extent": [
+     4.368,
+     16.043,
+     7.669
+    ],
+    "radius": 18.31
+   }
+  },
+  {
+   "name": "SHIV_Body",
+   "template_fragment": "SG_Body_Jakobs",
+   "first_index": 75681,
+   "num_primitives": 3013,
+   "dz": 0.0,
+   "sockets": "all",
+   "dz_sockets": [],
+   "socket_overrides": {
+    "RearSight": [
+     1.637,
+     -13.24,
+     18.081
+    ],
+    "EjectPort": [
+     -4.565,
+     -3.653,
+     9.643
+    ]
+   },
+   "bounds_override": {
+    "origin": [
+     -0.071,
+     -2.123,
+     5.958
+    ],
+    "extent": [
+     6.72,
+     17.117,
+     12.122
+    ],
+    "radius": 22.025
+   }
+  },
+  {
+   "name": "SHIV_Grip",
+   "template_fragment": "SG_FrontGrip_Jakobs",
+   "first_index": 89082,
+   "num_primitives": 48,
+   "dz": 0.0,
+   "sockets": "all",
+   "dz_sockets": [],
+   "bounds_override": {
+    "origin": [
+     -0.005,
+     13.364,
+     -6.005
+    ],
+    "extent": [
+     0.808,
+     6.851,
+     2.937
+    ],
+    "radius": 7.498
+   }
+  },
+  {
+   "name": "SHIV_Stock",
+   "template_fragment": "SG_Stock_Jakobs",
+   "first_index": 89226,
+   "num_primitives": 285,
+   "dz": 0.0,
+   "sockets": "all",
+   "dz_sockets": [],
+   "bounds_override": {
+    "origin": [
+     -0.043,
+     18.255,
+     1.102
+    ],
+    "extent": [
+     2.884,
+     7.06,
+     8.598
+    ],
+    "radius": 11.493
+   }
+  }
+ ],
+ "parts": [
+  {
+   "part_name": "SHIV_Barrel",
+   "slot": "WP_Barrel",
+   "outer": "GD_Weap_Shotgun.Barrel",
+   "fragment": "SHIV_Barrel",
+   "template_part": "GD_Weap_Shotgun.Barrel.SG_Barrel_Hyperion_Striker",
+   "register_in": [],
+   "overrides": {
+    "weapon_attribute_effects": [
+     {
+      "attribute": "D_Attributes.Weapon.WeaponDamage",
+      "modifier": "MT_Scale",
+      "value": 0.5
+     },
+     {
+      "attribute": "D_Attributes.Weapon.WeaponFireInterval",
+      "modifier": "MT_Scale",
+      "value": 0.35
+     },
+     {
+      "attribute": "D_Attributes.Weapon.WeaponSpread",
+      "modifier": "MT_PreAdd",
+      "value": -4.0
+     },
+     {
+      "attribute": "D_Attributes.Weapon.WeaponSpread",
+      "modifier": "MT_Scale",
+      "value": -1.5
+     },
+     {
+      "attribute": "D_Attributes.Weapon.WeaponPerShotAccuracyImpulse",
+      "modifier": "MT_Scale",
+      "value": -0.3
+     },
+     {
+      "attribute": "D_Attributes.Weapon.WeaponClipSize",
+      "modifier": "MT_PostAdd",
+      "value": 7.0
+     }
+    ],
+    "external_attribute_effects": [
+     {
+      "attribute": "D_Attributes.GameplayAttributes.PlayerCriticalHitBonus",
+      "modifier": "MT_Scale",
+      "value": 0.5
+     },
+     {
+      "attribute": "D_Attributes.AccuracyResourcePool.AccuracyMinValue",
+      "modifier": "MT_Scale",
+      "value": -0.5
+     },
+     {
+      "attribute": "D_Attributes.AccuracyResourcePool.AccuracyMaxValue",
+      "modifier": "MT_Scale",
+      "value": -0.5
+     }
+    ]
+   }
+  },
+  {
+   "part_name": "SHIV_Body",
+   "slot": "WP_Body",
+   "outer": "GD_Weap_Shotgun.Body",
+   "fragment": "SHIV_Body",
+   "template_part": "GD_Weap_Shotgun.Body.SG_Body_Jakobs_4",
+   "register_in": [],
+   "overrides": {
+    "attribute_slot_upgrades": [
+     {
+      "slot": "WeaponDamage",
+      "grade": 24
+     },
+     {
+      "slot": "WeaponSpread",
+      "grade": 7
+     }
+    ]
+   }
+  },
+  {
+   "part_name": "SHIV_Grip",
+   "slot": "WP_Grip",
+   "outer": "GD_Weap_Shotgun.Grip",
+   "fragment": "SHIV_Grip",
+   "template_part": "GD_Weap_Shotgun.Grip.SG_Grip_Jakobs",
+   "register_in": [],
+   "overrides": {
+    "clear_arrays": [
+     "PrefixList"
+    ]
+   }
+  },
+  {
+   "part_name": "SHIV_Stock",
+   "slot": "WP_Stock",
+   "outer": "GD_Weap_Shotgun.Stock",
+   "fragment": "SHIV_Stock",
+   "template_part": "GD_Weap_Shotgun.Stock.SG_Stock_Jakobs",
+   "register_in": []
+  },
+  {
+   "part_name": "SHIV_Sight",
+   "slot": "WP_Sight",
+   "outer": "GD_Weap_Shotgun.Sight",
+   "fragment": null,
+   "template_part": "GD_Weap_Shotgun.Sight.SG_Sight_None",
+   "register_in": []
+  },
+  {
+   "part_name": "SHIV_Accessory",
+   "outer": "GD_Weap_Shotgun.Accessory",
+   "fragment": null,
+   "template_part": "GD_Weap_Shotgun.Accessory.SG_Accessory_None",
+   "register_in": []
+  },
+  {
+   "part_name": "SHIV_Material",
+   "slot": "WP_Material",
+   "outer": "GD_Weap_Shotgun.ManufacturerMaterials",
+   "fragment": null,
+   "template_part": "GD_Weap_Shotgun.ManufacturerMaterials.Mat_Jakobs_5_Legendary",
+   "register_in": [],
+   "overrides": {
+    "object_properties": {
+     "Material": "Common_GunMaterials.Materials.Shotgun.Mati_SHIV"
+    }
+   }
+  }
+ ],
+ "options": {
+  "register_at": "menu",
+  "keep_alive": true,
+  "save_roundtrip": true,
+  "validate_override": true,
+  "test_harness": false,
+  "force_template_fragment_on_map_load": null,
+  "menu_ticks": 600,
+  "own_gestalt": true
+ },
+ "balances": [
+  {
+   "name": "SG_Jakobs_5_SHIV",
+   "outer": "GD_Weap_Shotgun.A_Weapons_Legendary",
+   "template_balance": "GD_Weap_Shotgun.A_Weapons_Legendary.SG_Jakobs_5_Striker",
+   "part_lists": {
+    "BarrelPartData": [
+     "SHIV_Barrel"
+    ],
+    "BodyPartData": [
+     "SHIV_Body"
+    ],
+    "GripPartData": [
+     "SHIV_Grip"
+    ],
+    "StockPartData": [
+     "SHIV_Stock"
+    ],
+    "SightPartData": [
+     "SHIV_Sight"
+    ],
+    "Accessory1PartData": [
+     "SHIV_Accessory"
+    ],
+    "MaterialPartData": [
+     "SHIV_Material"
+    ]
+   },
+   "title": {
+    "name": "Title_Legendary_SHIV",
+    "outer": "GD_Weap_Shotgun.Name.Title_Jakobs",
+    "template": "GD_Weap_Shotgun.Name.Title_Jakobs.Title_Legendary_Striker",
+    "part_name": "The Busted Flush",
+    "red_text": "The Baxter Society has your number.<br><font color=\"#ffffff\">RMB: two shells, one slug, triple damage. Hits build Rage; full Rage: +25% damage, +20% speed.</font>",
+    "on_parts": [
+     "SHIV_Barrel"
+    ],
+    "name_is_unique": true
+   },
+   "pools": [
+    "GD_Itempools.WeaponPools.Pool_Weapons_Shotguns_06_Legendary"
+   ],
+   "suppress_prefix": true
+  }
+ ],
+ "extra_packages": [
+  {
+   "name": "PipelineTexturesShiv",
+   "file": "../scratch/PipelineTexturesShiv.upk"
+  }
+ ],
+ "materials": [
+  {
+   "name": "Mati_SHIV",
+   "outer": "Common_GunMaterials.Materials.Shotgun",
+   "parent": "Item_ClassMods.Mat.Master_ClassMod",
+   "texture_parameters": {
+    "p_Diffuse": "PipelineTexturesShiv.SHIV_Albedo",
+    "p_Normal": "PipelineTexturesShiv.SHIV_Normal"
+   },
+   "vector_parameters": {},
+   "scalar_parameters": {}
+  }
+ ],
+ "fire_sound": {
+  "wav": "../scratch/dl_shiv/sounds/weapons/shiv/shiv_weapon_fire_01.wav",
+  "volume": 15,
+  "mute_stock": true
+ },
+ "alt_fire": {
+  "ammo_cost": 2,
+  "damage_scale": 3.0,
+  "accuracy_impulse_scale": 3.0,
+  "recoil_pitch_deg": 6.0,
+  "recoil_seconds": 0.12,
+  "knockback_hip": 180.0,
+  "knockback_alt": 520.0,
+  "lift_hip": 60.0,
+  "lift_alt": 160.0,
+  "block_zoom": true,
+  "sound": "../scratch/dl_shiv/sounds/weapons/shiv/shiv_weapon_fire_alt_01.wav",
+  "volume": 18
+ },
+ "rage": {
+  "max": 100.0,
+  "gain_hit": 5.0,
+  "gain_alt_hit": 10.0,
+  "gain_kill": 15.0,
+  "decay_delay_s": 10.0,
+  "decay_per_s": 2.5,
+  "damage_scale": 1.25,
+  "speed_scale": 1.2
+ }
+}

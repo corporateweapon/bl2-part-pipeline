@@ -1,0 +1,11 @@
+schema_version = "1.0.0"
+
+id = "bl2_blender"
+version = "0.5.0"
+name = "BL2 Part Pipeline"
+tagline = "Import, edit and export Borderlands 2 gestalt weapon fragments"
+maintainer = "bl2-part-pipeline <local@example.com>"
+type = "add-on"
+license = ["SPDX:MIT"]
+blender_version_min = "4.2.0"
+tags = ["Import-Export"]

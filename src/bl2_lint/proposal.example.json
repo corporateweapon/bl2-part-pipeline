@@ -1,0 +1,16 @@
+{
+ "package": "PipelineMeshes",
+ "mesh_path": "PipelineMeshes.PL_AR_Gestalt_Mesh",
+ "weapon_type": "AssaultRifle",
+ "fragment": "AR_Barrel_PL_Bent",
+ "first_index": 68085,
+ "num_primitives": 1164,
+ "template_fragment": "AR_Barrel_Vladof",
+ "part_path": "GD_Weap_AssaultRifle.Barrel.AR_Barrel_PL_Bent",
+ "part_slot": "WP_Barrel",
+ "sockets": ["Muzzle", "EyeSocket2", "FrontSight"],
+ "register_in_lists": ["GD_Weap_AssaultRifle.A_Weapons_Legendary.AR_Vladof_5_Sherdifier:WeaponPartListCollectionDefinition_39.BarrelPartData"],
+ "register_at": "menu",
+ "keep_alive": true,
+ "objects": []
+}

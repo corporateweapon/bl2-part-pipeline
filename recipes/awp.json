@@ -1,0 +1,226 @@
+{
+ "name": "AWP",
+ "_comment": "Transcription of src/bl2_blender/awp_retarget.py (M9-M11): the CS2 AWP onto the Jakobs sniper gestalt. Bone map measured by anim_probe (M11): bolt_action -> Jakobs_VarA_BackSlider moves 4.6 u straight back on fire; Clip is static through a reload so the magazine stays on Root; never bind to Jakobs_Chamber/Jakobs_Rounds (111.8 deg). The glb is not redistributable and never enters the repo.",
+ "source": {
+  "glb": "assets/awp/model.glb",
+  "body_match": "awp",
+  "body_exclude": "arms",
+  "attachments": [
+   "muzzle",
+   "bore",
+   "eject",
+   "sight",
+   "grip"
+  ],
+  "frame": {
+   "preset": "cs2_gltf"
+  }
+ },
+ "host": {
+  "mesh_path": "Weap_SniperRifles.GestaltDef_SniperRifle_GestaltSkeletalMesh",
+  "fragment_table": "scratch/gestalt_SR_fragments.txt",
+  "reference_fragment": "SR_Body_Dahl",
+  "muzzle_socket": "SR_Body_Dahl_Muzzle",
+  "muzzle_socket_default": [
+   0.0,
+   -131.912,
+   9.75
+  ]
+ },
+ "placement": {
+  "anchor_group": "trigger",
+  "anchor_bone": "Trigger",
+  "scale": 1.0
+ },
+ "bones": {
+  "map": {
+   "trigger": "Trigger",
+   "bolt_action": "Jakobs_VarA_BackSlider"
+  },
+  "static": "Root"
+ },
+ "checks": [
+  {
+   "kind": "longest_axis_y"
+  },
+  {
+   "kind": "muzzle_neg_y"
+  },
+  {
+   "kind": "mag_hangs_down",
+   "group": "clip",
+   "below": 0.0
+  },
+  {
+   "kind": "highest_point",
+   "y_frac_gt": 0.45
+  },
+  {
+   "kind": "attachment_muzzle",
+   "name": "muzzle",
+   "tol_y": 4.0,
+   "tol_x": 3.0
+  },
+  {
+   "kind": "attachment_above_centre",
+   "name": "sight"
+  },
+  {
+   "kind": "attachment_side",
+   "name": "eject",
+   "lt": 0.0,
+   "level": "warn"
+  },
+  {
+   "kind": "stock_behind_root"
+  }
+ ],
+ "rule_order": [
+  "AWP_Barrel",
+  "AWP_Scope",
+  "AWP_Stock",
+  "AWP_Grip"
+ ],
+ "_order_note": "fragments[] is the EXPORT order (it fixes each fragment's index range in the package and so the spec's first_index); rule_order is the order the face rules are tried in, first match wins, the remainder is the body",
+ "fragments": [
+  {
+   "name": "AWP_Body",
+   "template": "SR_Body_Dahl",
+   "rule": "remainder",
+   "bone": null
+  },
+  {
+   "name": "AWP_Barrel",
+   "template": "SR_Barrel_Jakobs",
+   "rule": {
+    "front_y_lt": -35.0
+   },
+   "bone": "Barrel"
+  },
+  {
+   "name": "AWP_Scope",
+   "template": "SR_Scope_Jakobs",
+   "rule": {
+    "cz_gt": 12.0,
+    "cy_between": [
+     -32.0,
+     10.0
+    ]
+   },
+   "bone": "Root"
+  },
+  {
+   "name": "AWP_Grip",
+   "template": "SR_Grip_Jakobs",
+   "rule": {
+    "cy_gt": 2.0,
+    "cz_lt": -2.0
+   },
+   "bone": "Root"
+  },
+  {
+   "name": "AWP_Stock",
+   "template": "SR_Stock_Jakobs",
+   "rule": {
+    "cy_gt": 12.0
+   },
+   "bone": "Root"
+  },
+  {
+   "name": "AWP_Mag",
+   "template": "SR_Body_Dahl",
+   "subset_of": "AWP_Body",
+   "majority_group": "clip",
+   "bone": "Clip",
+   "export": false
+  }
+ ],
+ "sockets": [
+  {
+   "socket": "Muzzle",
+   "fragment": "AWP_Barrel",
+   "point": {
+    "ring": "front",
+    "of": "AWP_Barrel",
+    "tol": 0.8,
+    "xz_from_attachment": "muzzle"
+   }
+  },
+  {
+   "socket": "FrontSight",
+   "fragment": "AWP_Barrel",
+   "point": {
+    "extreme": "highest",
+    "of": "AWP_Barrel"
+   }
+  },
+  {
+   "socket": "RearSight",
+   "fragment": "AWP_Body",
+   "point": {
+    "extreme": "rearmost",
+    "of": "AWP_Body",
+    "where": {
+     "z_gt": 0.0
+    }
+   },
+   "fallback": {
+    "resolved": "FrontSight"
+   }
+  },
+  {
+   "socket": "EjectPort",
+   "fragment": "AWP_Body",
+   "point": {
+    "attachment": "eject",
+    "push_outside": {
+     "of": "AWP_Body",
+     "band": 6.0,
+     "margin": 0.5
+    }
+   },
+   "fallback": {
+    "composite": {
+     "x": {
+      "extreme": "min_x",
+      "of": "AWP_Body",
+      "offset": -0.5
+     },
+     "y": 0.0,
+     "z": {
+      "extreme": "max_z",
+      "of": "AWP_Body",
+      "scale": 0.6
+     }
+    }
+   }
+  },
+  {
+   "socket": "EyeSocket1",
+   "fragment": "AWP_Scope",
+   "point": {
+    "ring": "rear",
+    "of": "AWP_Scope",
+    "tol": 1.0
+   }
+  },
+  {
+   "socket": "SightFX",
+   "fragment": "AWP_Scope",
+   "point": {
+    "ring": "front",
+    "of": "AWP_Scope",
+    "tol": 1.0,
+    "snap_y": false
+   }
+  }
+ ],
+ "output": {
+  "package_name": "PipelineMeshesAWP",
+  "mesh_name": "PL_SR_Gestalt_Mesh",
+  "package": "scratch/PipelineMeshesAWP.upk",
+  "report": "scratch/awp_retarget_report.json",
+  "captures": "scratch/captures",
+  "preview_prefix": "awp_retarget"
+ }
+}

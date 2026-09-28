@@ -1,0 +1,178 @@
+{
+ "name": "AK47",
+ "_comment": "Transcription of src/bl2_blender/ak47_retarget.py (M6-M8): the CS2 AK-47 onto the assault-rifle gestalt. Cut planes justified in that script's Cuts docstring and scratch/ak47_retarget_report.json. The glb is not redistributable and never enters the repo.",
+ "source": {
+  "glb": "assets/ak47/model.glb",
+  "body_match": "ak47",
+  "body_exclude": "arms",
+  "attachments": [],
+  "frame": {
+   "preset": "cs2_gltf"
+  }
+ },
+ "host": {
+  "mesh_path": "Weap_AssaultRifles.GestaltDef_AssaultRifle_GestaltSkeletalMesh",
+  "fragment_table": null,
+  "reference_fragment": "AR_Barrel_Vladof",
+  "muzzle_socket": "AR_Barrel_Vladof_Muzzle",
+  "muzzle_socket_default": [
+   0.0,
+   0.0,
+   0.0
+  ]
+ },
+ "placement": {
+  "anchor_group": "trigger",
+  "anchor_bone": "Trigger",
+  "scale": 1.0
+ },
+ "bones": {
+  "map": {
+   "clip": "Mag",
+   "trigger": "Trigger",
+   "bolt": "ChargeHandle"
+  },
+  "static": "Root"
+ },
+ "checks": [
+  {
+   "kind": "longest_axis_y"
+  },
+  {
+   "kind": "muzzle_neg_y"
+  },
+  {
+   "kind": "mag_hangs_down",
+   "group": "clip",
+   "below": "floor"
+  },
+  {
+   "kind": "highest_point",
+   "y_frac_lt": 0.35
+  },
+  {
+   "kind": "group_side",
+   "group": "bolt",
+   "axis": "x",
+   "lt": -2.0,
+   "level": "warn"
+  },
+  {
+   "kind": "stock_behind_root"
+  }
+ ],
+ "rule_order": [
+  "AK_Barrel",
+  "AK_Stock",
+  "AK_Grip"
+ ],
+ "_order_note": "fragments[] is the EXPORT order (it fixes each fragment's index range in the package and so the spec's first_index); rule_order is the order the face rules are tried in, first match wins, the remainder is the body",
+ "fragments": [
+  {
+   "name": "AK_Body",
+   "template": "AR_Body_Vladof",
+   "rule": "remainder",
+   "bone": null
+  },
+  {
+   "name": "AK_Barrel",
+   "template": "AR_Barrel_Vladof",
+   "rule": {
+    "front_y_lt": -49.0
+   },
+   "bone": "Barrel"
+  },
+  {
+   "name": "AK_Grip",
+   "template": "AR_Grip_Vladof",
+   "rule": {
+    "cy_gt": 5.0,
+    "cz_lt": -1.0
+   },
+   "bone": "Root"
+  },
+  {
+   "name": "AK_Stock",
+   "template": "AR_Stock_Vladof",
+   "rule": {
+    "cy_gt": 12.0
+   },
+   "bone": "Root"
+  },
+  {
+   "name": "AK_Mag",
+   "template": "AR_Body_Vladof",
+   "subset_of": "AK_Body",
+   "majority_group": "clip",
+   "bone": "Mag",
+   "export": true
+  }
+ ],
+ "sockets": [
+  {
+   "socket": "Muzzle",
+   "fragment": "AK_Barrel",
+   "point": {
+    "ring": "front",
+    "of": "AK_Barrel",
+    "tol": 0.6
+   }
+  },
+  {
+   "socket": "FrontSight",
+   "fragment": "AK_Barrel",
+   "point": {
+    "extreme": "highest",
+    "of": "AK_Barrel"
+   }
+  },
+  {
+   "socket": "RearSight",
+   "fragment": "AK_Body",
+   "point": {
+    "extreme": "highest",
+    "of": "AK_Body",
+    "where": {
+     "y_between": [
+      -20.0,
+      -6.0
+     ]
+    }
+   },
+   "fallback": {
+    "resolved": "FrontSight"
+   }
+  },
+  {
+   "socket": "EjectPort",
+   "fragment": "AK_Body",
+   "point": {
+    "bone_centroid": "ChargeHandle",
+    "of": "AK_Body"
+   },
+   "fallback": {
+    "resolved": "RearSight"
+   }
+  },
+  {
+   "socket": "EyeSocket2",
+   "fragment": "AK_Barrel",
+   "point": {
+    "sight_line": {
+     "y": 40.0,
+     "x": 0.0,
+     "rear": "RearSight",
+     "front": "FrontSight"
+    }
+   }
+  }
+ ],
+ "output": {
+  "package_name": "PipelineMeshes",
+  "mesh_name": "PL_AR_Gestalt_Mesh",
+  "package": "scratch/PipelineMeshes_ak47.upk",
+  "report": "scratch/ak47_retarget_report.json",
+  "captures": "scratch/captures",
+  "preview_prefix": "ak47_retarget"
+ }
+}

@@ -1,0 +1,138 @@
+{
+ "name": "SHIV",
+ "_comment": "Shiv's shotgun from Deadlock onto the SHOTGUN gestalt (first weapon on this host). Non-distributable: the model, textures and sounds are Valve's; the glb (scratch/dl_shiv/shiv_gun.glb) and everything derived from it stay out of the repo. The glb is prepared by scratch/dl_shiv/work/export_glb.py from Source2Viewer-CLI's shiv.vmdl_c export: the static 'gun' mesh only, rotated into the add-on frame (muzzle -Y, up +Z) and scaled inches->cm (x2.54), groups root/trigger/lever carried as skin weights; the muzzle is the barrel's front ring (both bores, so the centre between them). A bone-parented 'muzzle' empty exported from Blender landed 9 units off (the bone-tail trap), so it is not used. Shotgun fragment table from the OpenBLCMM dump per docs/history/M9_NOTES.md section 1 (scratch/gestalt_SG_fragments.txt, 45 rows, no repeats).",
+ "source": {
+  "glb": "scratch/dl_shiv/shiv_gun.glb",
+  "body_match": "shiv",
+  "body_exclude": "arms",
+  "attachments": [],
+  "frame": {
+   "preset": "identity"
+  }
+ },
+ "host": {
+  "mesh_path": "Weap_Shotguns.GestaltDef_Shotgun_GestaltSkeletalMesh",
+  "fragment_table": "scratch/gestalt_SG_fragments.txt",
+  "reference_fragment": "SG_Barrel_Jakobs",
+  "muzzle_socket": "SG_Barrel_Jakobs_Muzzle",
+  "muzzle_socket_default": [
+   0.0,
+   -93.0,
+   4.0
+  ]
+ },
+ "placement": {
+  "anchor_group": "trigger",
+  "anchor_bone": "Trigger",
+  "scale": 0.9,
+  "_note": "trigger -> Trigger. 1.3 (first build) filled a third of the screen and read blocky; 0.9 is a little under Deadlock's own proportions (83 cm at 1.0). 1.72 would reach the stock Jakobs muzzle socket."
+ },
+ "bones": {
+  "map": {
+   "trigger": "Trigger"
+  },
+  "static": "Root",
+  "_note": "only the trigger moves. The lever loop stays on Root: no lever bone on the shotgun host, and Pump/Barrel/Slider are unprobed (M9 rule: never bind a bone whose clip is unknown)."
+ },
+ "checks": [
+  {
+   "kind": "longest_axis_y"
+  },
+  {
+   "kind": "muzzle_neg_y"
+  },
+  {
+   "kind": "stock_behind_root",
+   "level": "warn"
+  }
+ ],
+ "rule_order": [
+  "SHIV_Barrel",
+  "SHIV_Grip",
+  "SHIV_Stock"
+ ],
+ "_order_note": "fragments[] is the EXPORT order (it fixes each fragment's index range in the package and so the spec's first_index); rule_order is the order the face rules are tried in, first match wins, the remainder is the body",
+ "fragments": [
+  {
+   "name": "SHIV_Body",
+   "template": "SG_Body_Jakobs",
+   "rule": "remainder",
+   "bone": null
+  },
+  {
+   "name": "SHIV_Barrel",
+   "template": "SG_Barrel_Jakobs",
+   "rule": {
+    "front_y_lt": -20.0
+   },
+   "bone": "Root"
+  },
+  {
+   "name": "SHIV_Grip",
+   "template": "SG_FrontGrip_Jakobs",
+   "rule": {
+    "cz_lt": -4.97,
+    "cy_gt": -6.14
+   },
+   "bone": "Root"
+  },
+  {
+   "name": "SHIV_Stock",
+   "template": "SG_Stock_Jakobs",
+   "rule": {
+    "cy_gt": 12.55
+   },
+   "bone": "Root"
+  }
+ ],
+ "sockets": [
+  {
+   "socket": "Muzzle",
+   "fragment": "SHIV_Barrel",
+   "point": {
+    "ring": "front",
+    "of": "SHIV_Barrel",
+    "tol": 0.6
+   }
+  },
+  {
+   "socket": "FrontSight",
+   "fragment": "SHIV_Barrel",
+   "point": {
+    "extreme": "highest",
+    "of": "SHIV_Barrel"
+   }
+  },
+  {
+   "socket": "RearSight",
+   "fragment": "SHIV_Body",
+   "point": {
+    "extreme": "highest",
+    "of": "SHIV_Body"
+   },
+   "fallback": {
+    "resolved": "FrontSight"
+   }
+  },
+  {
+   "socket": "EjectPort",
+   "fragment": "SHIV_Body",
+   "point": {
+    "bone_centroid": "Trigger",
+    "of": "SHIV_Body"
+   },
+   "fallback": {
+    "resolved": "RearSight"
+   }
+  }
+ ],
+ "output": {
+  "package_name": "PipelineMeshesShiv",
+  "mesh_name": "PL_SG_Gestalt_Mesh",
+  "package": "scratch/PipelineMeshesShiv.upk",
+  "report": "scratch/shiv_retarget_report.json",
+  "captures": "scratch/captures",
+  "preview_prefix": "shiv_retarget"
+ },
+ "_rules_note": "face rules are in PLACED coordinates (after scale + anchor), so a scale change moves every cut: these are the 1.3 build's planes re-expressed at 0.9 (source y -28.65 / z -12.13, y -13.27 / y 7.50)"
+}

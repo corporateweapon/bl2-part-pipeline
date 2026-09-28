@@ -1,0 +1,153 @@
+{
+ "_comment": "Condensed failure-mode catalog for bl2_triage. docs/FAILURE_MODES.md is the narrative; this file is what the tool prints. kind: instrument (the run failed, the build is fine), build (the build or spec is wrong), config (game folder / install state), info (worth knowing, not a failure).",
+ "F8": {
+  "kind": "config",
+  "symptom": "the mod's hooks never fire and unrealsdk.log shows no error",
+  "fix": "write sdk_mods/settings/<mod>.json with {\"enabled\": true} before launching"
+ },
+ "F10": {
+  "kind": "instrument",
+  "symptom": "Launcher.exe splash sat between Steam and the game",
+  "fix": "kill Launcher.exe and start Binaries\\Win32\\Borderlands2.exe directly (the driver does this)"
+ },
+ "F12": {
+  "kind": "build",
+  "symptom": "game dies ~3 s after launch; unrealsdk.log stops right after pyunrealsdk init",
+  "fix": "a SHA1-checked base package was modified; restore it from backup and ship NEW .upk files only"
+ },
+ "F13": {
+  "kind": "build",
+  "symptom": "the package loads but none of its exports exist",
+  "fix": "export entries must have ExportFlags=0; rebuild the package with the current writer"
+ },
+ "F16": {
+  "kind": "build",
+  "symptom": "hard crash during map load with a Fatal error dialog",
+  "fix": "register fragments/parts at the main menu (options.register_at: menu) before any save loads"
+ },
+ "F17": {
+  "kind": "build",
+  "symptom": "the map load after registration dies with 'Ran out of virtual memory'",
+  "fix": "root every loaded/constructed object (options.keep_alive: true); disk space is not involved"
+ },
+ "F18": {
+  "kind": "build",
+  "symptom": "a saved weapon reloads with the custom part slot null",
+  "fix": "options.save_roundtrip must be true so the save/load hooks record and restore the part paths"
+ },
+ "F19": {
+  "kind": "build",
+  "symptom": "the whole custom weapon disappears on load, no crash",
+  "fix": "options.validate_override must be true (ValidateWeaponDefinition forced for our parts)"
+ },
+ "F20": {
+  "kind": "instrument",
+  "symptom": "captures are byte-identical run after run or show the desktop",
+  "fix": "the game lost the foreground and stopped presenting; clear whatever took focus and rerun (prefer borderless fullscreen)"
+ },
+ "F22": {
+  "kind": "instrument",
+  "symptom": "stable_across_runs fails at 0.7-1.5 % in third person for a build that renders correctly",
+  "fix": "the third-person crop is mostly animated pawn; run with --capture-view first"
+ },
+ "F23": {
+  "kind": "instrument",
+  "symptom": "a first-person run captured in third person; a Steam screenshot toast is in the frame",
+  "fix": "F12 is Steam's screenshot key and the view toggle; re-emit with harness_capture_view so the view is held"
+ },
+ "F24": {
+  "kind": "build",
+  "symptom": "a part that should draw nothing draws a stock fragment, or a body draws extra attachments",
+  "fix": "re-emit with the current templates (fragment-less parts clear GestaltModeSkeletalMeshName, every clone clears the additional names)"
+ },
+ "F25": {
+  "kind": "build",
+  "symptom": "the harness phase machine finishes in under a second; the capture is of the wrong gun",
+  "fix": "phase waits were tick-counted; set options.harness_timing: \"seconds\" and re-emit"
+ },
+ "F27": {
+  "kind": "instrument",
+  "symptom": "every focus and capture fails while the game is alive; a system dialog owns the foreground",
+  "fix": "dismiss the dialog (FindWindowEx OK + BM_CLICK) and rerun; the build is unaffected"
+ },
+ "F28": {
+  "kind": "config",
+  "symptom": "an installed build behaves like an older version of itself",
+  "fix": "re-emit every build, enabled or parked, after any templates.py change and copy them in by hand"
+ },
+ "F29": {
+  "kind": "build",
+  "symptom": "the load hook reports parts missing; a weapon that lost its parts cannot be repaired",
+  "fix": "make sure the mod that registered those parts is the one enabled; records merge on save and retire on load"
+ },
+ "F30": {
+  "kind": "info",
+  "symptom": "the live save differs from the pre-run backup minutes after a verified restore",
+  "fix": "the save folder is cloud-synced; take an independent copy before a session and treat the restore flag as 'at that time'"
+ },
+ "F31": {
+  "kind": "instrument",
+  "symptom": "every menu probe reads yellow=0 and stable_across_runs reports 70-85 %",
+  "fix": "the capture is not 1920x1080; every pixel box is calibrated there. Set the game to 1920x1080 or rely on compare.scale_box"
+ },
+ "F32": {
+  "kind": "instrument",
+  "symptom": "the unattended driver loses focus repeatedly with no dialog on screen",
+  "fix": "the console that launched the loop raised its window; drive with echo=False, redirect stdout, run in the background"
+ },
+ "F33": {
+  "kind": "instrument",
+  "symptom": "first-person stable_across_runs fails at 0.5-5 % for a weapon that fills the crop; captures visually identical",
+  "fix": "idle sway on an all-edge crop; the stability check now uses compare.SWAY_TOLERANCE_PX -- rerun with the current bl2_verify"
+ },
+ "F34": {
+  "kind": "build",
+  "symptom": "our weapon is held but draws nothing (empty hands); every pixel condition can still pass",
+  "fix": "the weapon was built from a gestalt that does not hold our fragments: with own_gestalt the balance's part-list collections must name our WeaponTypeDefinition (AssociatedWeaponType); re-emit"
+ },
+ "F35": {
+  "kind": "build",
+  "symptom": "menu_setup fails in load_extra_packages: load_package returned None for a package we wrote",
+  "fix": "the package summary claims a newer EngineVersion (TPS 2630070) than BL2 (1712575); write it with a BL2 package as the header template"
+ },
+ "BACKPACK": {
+  "kind": "instrument",
+  "symptom": "the grant landed in no slot, so the equip picked up whatever was in hand",
+  "fix": "the backpack is full; run against a clean save backup (backup/saves/<oldest>) and restore the live save afterwards"
+ },
+ "ELEMENTAL": {
+  "kind": "instrument",
+  "symptom": "an elemental part rolled on the test weapon, changing the capture between runs",
+  "fix": "pin ElementalPartData to a fragment-less part in the harness spec (or leave the field out to keep the template's bEnabled)"
+ },
+ "INVENTORY": {
+  "kind": "instrument",
+  "symptom": "harness_pose inventory left the item card open, so the save-and-quit keys went to the card",
+  "fix": "capture-only pose today; close the card before scoring or read the other three conditions"
+ },
+ "RULE3": {
+  "kind": "config",
+  "symptom": "two pipeline mods enabled on the same host gestalt (or an Armory beside one of its weapons)",
+  "fix": "park all but one under sdk_mods/_disabled/ and move its settings JSON with it"
+ },
+ "REGFAIL": {
+  "kind": "build",
+  "symptom": "menu_setup never reached ok=true: a fragment, part, material or balance failed to construct",
+  "fix": "read the error text below; it names the object. Lint the spec (--lint-only) and re-emit"
+ },
+ "F36": {
+  "kind": "instrument",
+  "symptom": "menu probes blind; captures smaller than the physical desktop (a top-left crop)",
+  "fix": "Windows display scaling with a DPI-unaware capture; capture.ps1 is DPI-aware since 2026-09-24 -- make sure the installed copy is current and rerun"
+ },
+ "F37": {
+  "kind": "instrument",
+  "symptom": "a --hud-watch run captured no HUD frames",
+  "fix": "a live setres stalls BL2 until input arrives; launch each size with run_loop --game-res WxH and keep harness_hud_test.resolutions empty"
+ },
+ "F38": {
+  "kind": "instrument",
+  "symptom": "the run's save backup covered fewer slots than the save folder holds",
+  "fix": "the loop plays the save CONTINUE loads (the last played); restore that slot from a live snapshot, and use a SaveGuard that backs up every slot (2026-09-27+)"
+ }
+}

@@ -1,0 +1,18 @@
+{
+ "id": "boxgun",
+ "name": "Boxgun",
+ "version": "1.0.0",
+ "author": "44M0N",
+ "license": "CC0-1.0",
+ "license_file": null,
+ "description": "The Armory's default pack: the Boxgun, a legendary Vladof assault rifle built from nine primitives by the bl2-part-pipeline's own example recipe. Every part of it (mesh, balance, title, red text, stats) is original and free to reuse; use it as the template for your own pack.",
+ "url": "",
+ "weapons": [
+  {
+   "id": "boxgun",
+   "label": "Boxgun",
+   "spec": "../specs/boxgun.json",
+   "sidecar": "../scratch/PipelineMeshesBoxgun.fragment.json"
+  }
+ ]
+}

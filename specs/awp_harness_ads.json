@@ -1,0 +1,365 @@
+{
+ "schema_version": 1,
+ "mod": {
+  "name": "PipelineAWPHarness",
+  "author": "44M0N",
+  "version": "0.1.0",
+  "description": "ADS variant of PipelineAWPHarness: harness_pose 'ads' aims down sights after the camera step and records the camera POV, bZoomed, the zoom/ironsights socket names and every socket of ours on the held weapon's first-person mesh. This is how the AWP's EyeSocket1 (its own scope's rear ring) is measured against what the game actually zooms through."
+ },
+ "package": "PipelineMeshesAWP",
+ "mesh_path": "PipelineMeshesAWP.PL_SR_Gestalt_Mesh",
+ "package_file": "../scratch/PipelineMeshesAWP.upk",
+ "weapon_type": "SniperRifle",
+ "fragments": [
+  {
+   "name": "AWP_Barrel",
+   "template_fragment": "SR_Barrel_Jakobs",
+   "first_index": 105597,
+   "num_primitives": 11154,
+   "dz": 0.0,
+   "sockets": "all",
+   "dz_sockets": [],
+   "socket_overrides": {
+    "Muzzle": [
+     0.836,
+     -96.609,
+     9.171
+    ],
+    "FrontSight": [
+     0.448,
+     -90.761,
+     11.035
+    ]
+   },
+   "bounds_override": {
+    "origin": [
+     0.024,
+     -58.906,
+     6.22
+    ],
+    "extent": [
+     4.0,
+     37.703,
+     4.816
+    ],
+    "radius": 38.219
+   }
+  },
+  {
+   "name": "AWP_Body",
+   "template_fragment": "SR_Body_Dahl",
+   "first_index": 64866,
+   "num_primitives": 13577,
+   "dz": 0.0,
+   "sockets": "all",
+   "dz_sockets": [],
+   "socket_overrides": {
+    "RearSight": [
+     -1.932,
+     18.289,
+     6.891
+    ],
+    "EyeSocket2": [
+     0.0,
+     34.0,
+     15.255
+    ],
+    "EjectPort": [
+     2.484,
+     -9.808,
+     9.594
+    ]
+   },
+   "bounds_override": {
+    "origin": [
+     2.578,
+     -6.426,
+     5.026
+    ],
+    "extent": [
+     4.513,
+     24.715,
+     8.006
+    ],
+    "radius": 26.368
+   }
+  },
+  {
+   "name": "AWP_Scope",
+   "template_fragment": "SR_Scope_Jakobs",
+   "first_index": 139059,
+   "num_primitives": 8406,
+   "dz": 0.0,
+   "sockets": "all",
+   "dz_sockets": [],
+   "socket_overrides": {
+    "EyeSocket1": [
+     -0.048,
+     7.445,
+     15.255
+    ],
+    "SightFX": [
+     0.198,
+     -27.636,
+     15.238
+    ]
+   },
+   "bounds_override": {
+    "origin": [
+     0.086,
+     -10.27,
+     15.827
+    ],
+    "extent": [
+     4.299,
+     17.715,
+     4.391
+    ],
+    "radius": 18.751
+   }
+  },
+  {
+   "name": "AWP_Grip",
+   "template_fragment": "SR_Grip_Jakobs",
+   "first_index": 164277,
+   "num_primitives": 866,
+   "dz": 0.0,
+   "sockets": "all",
+   "dz_sockets": [],
+   "bounds_override": {
+    "origin": [
+     0.024,
+     8.513,
+     -3.881
+    ],
+    "extent": [
+     1.844,
+     3.727,
+     2.565
+    ],
+    "radius": 4.886
+   }
+  },
+  {
+   "name": "AWP_Stock",
+   "template_fragment": "SR_Stock_Jakobs",
+   "first_index": 166875,
+   "num_primitives": 5761,
+   "dz": 0.0,
+   "sockets": "all",
+   "dz_sockets": [],
+   "bounds_override": {
+    "origin": [
+     0.024,
+     21.358,
+     1.941
+    ],
+    "extent": [
+     2.981,
+     18.317,
+     7.844
+    ],
+    "radius": 20.148
+   }
+  }
+ ],
+ "parts": [
+  {
+   "part_name": "AWP_Barrel",
+   "slot": "WP_Barrel",
+   "outer": "GD_Weap_SniperRifles.Barrel",
+   "fragment": "AWP_Barrel",
+   "template_part": "GD_Weap_SniperRifles.Barrel.SR_Barrel_Jakobs_Skullmasher",
+   "register_in": [],
+   "overrides": {
+    "weapon_attribute_effects": [
+     {
+      "attribute": "D_Attributes.Weapon.WeaponDamage",
+      "modifier": "MT_Scale",
+      "value": 1.0
+     },
+     {
+      "attribute": "D_Attributes.Weapon.WeaponFireInterval",
+      "modifier": "MT_Scale",
+      "value": 0.8
+     },
+     {
+      "attribute": "D_Attributes.Weapon.WeaponReloadSpeed",
+      "modifier": "MT_Scale",
+      "value": -0.2
+     },
+     {
+      "attribute": "D_Attributes.Weapon.WeaponPerShotAccuracyImpulse",
+      "modifier": "MT_Scale",
+      "value": -0.5
+     }
+    ],
+    "external_attribute_effects": [
+     {
+      "attribute": "D_Attributes.GameplayAttributes.PlayerCriticalHitBonus",
+      "modifier": "MT_Scale",
+      "value": 1.0
+     },
+     {
+      "attribute": "D_Attributes.GameplayAttributes.FootSpeed",
+      "modifier": "MT_Scale",
+      "value": -0.2
+     }
+    ],
+    "attribute_slot_upgrades": [
+     {
+      "slot": "WeaponDamage",
+      "grade": 6
+     },
+     {
+      "slot": "WeaponSpread",
+      "grade": -20
+     },
+     {
+      "slot": "AccuracyMin",
+      "grade": 10
+     },
+     {
+      "slot": "WeaponFireRate",
+      "grade": -6
+     }
+    ]
+   }
+  },
+  {
+   "part_name": "AWP_Body",
+   "slot": "WP_Body",
+   "outer": "GD_Weap_SniperRifles.Body",
+   "fragment": "AWP_Body",
+   "template_part": "GD_Weap_SniperRifles.Body.SR_Body_Jakobs_4",
+   "register_in": []
+  },
+  {
+   "part_name": "AWP_Scope",
+   "slot": "WP_Sight",
+   "outer": "GD_Weap_SniperRifles.Sight",
+   "fragment": "AWP_Scope",
+   "template_part": "GD_Weap_SniperRifles.Sight.Sniper_Sight_Jakobs",
+   "register_in": []
+  },
+  {
+   "part_name": "AWP_Grip",
+   "outer": "GD_Weap_SniperRifles.Grip",
+   "fragment": "AWP_Grip",
+   "template_part": "GD_Weap_SniperRifles.Grip.SR_Grip_Jakobs",
+   "register_in": [],
+   "overrides": {
+    "clear_arrays": [
+     "PrefixList"
+    ]
+   }
+  },
+  {
+   "part_name": "AWP_Stock",
+   "outer": "GD_Weap_SniperRifles.Stock",
+   "fragment": "AWP_Stock",
+   "template_part": "GD_Weap_SniperRifles.Stock.SR_Stock_Jakobs",
+   "register_in": []
+  },
+  {
+   "part_name": "AWP_Accessory",
+   "outer": "GD_Weap_SniperRifles.Accessory",
+   "fragment": null,
+   "template_part": "GD_Weap_SniperRifles.Accessory.Sniperl_Accessory_None",
+   "register_in": []
+  },
+  {
+   "part_name": "AWP_Material",
+   "outer": "GD_Weap_SniperRifles.ManufacturerMaterials",
+   "fragment": null,
+   "template_part": "GD_Weap_SniperRifles.ManufacturerMaterials.Material_Jakobs_5_Legendary",
+   "register_in": [],
+   "overrides": {
+    "object_properties": {
+     "Material": "Common_GunMaterials.Materials.sniper.Mati_AWP"
+    }
+   }
+  }
+ ],
+ "options": {
+  "register_at": "menu",
+  "keep_alive": true,
+  "save_roundtrip": true,
+  "validate_override": true,
+  "test_harness": true,
+  "force_template_fragment_on_map_load": null,
+  "menu_ticks": 600,
+  "harness_auto": true,
+  "harness_behindview": true,
+  "harness_capture_view": "first",
+  "harness_fov": 100,
+  "harness_timing": "seconds",
+  "status_path": "${REPO}\\scratch\\PipelineAWPHarness_status.json",
+  "harness_pose": "ads",
+  "own_gestalt": true
+ },
+ "balances": [
+  {
+   "name": "Sniper_Jakobs_5_AWP",
+   "outer": "GD_Weap_SniperRifles.A_Weapons_Legendary",
+   "template_balance": "GD_Weap_SniperRifles.A_Weapons_Legendary.Sniper_Jakobs_5_Skullmasher",
+   "part_lists": {
+    "BarrelPartData": [
+     "AWP_Barrel"
+    ],
+    "BodyPartData": [
+     "AWP_Body"
+    ],
+    "SightPartData": [
+     "AWP_Scope"
+    ],
+    "GripPartData": [
+     "AWP_Grip"
+    ],
+    "StockPartData": [
+     "AWP_Stock"
+    ],
+    "Accessory1PartData": [
+     "AWP_Accessory"
+    ],
+    "MaterialPartData": [
+     "AWP_Material"
+    ]
+   },
+   "title": {
+    "name": "Title_Legendary_AWP",
+    "outer": "GD_Weap_SniperRifles.Name.Title_Jakobs",
+    "template": "GD_Weap_SniperRifles.Name.Title_Jakobs.Title_Legendary_Skullmasher",
+    "part_name": "AWP",
+    "red_text": "One shot. One kill.<br><font color=\"#5ff5ff\">.338 Lapua. Bolt action. Bring a sidearm.</font><br><font color=\"#ffffff\">+100% Weapon Damage, +100% Critical Hit Damage<br>x1.8 Shot interval, -20% Reload Speed<br>-20% Movement Speed while equipped</font>",
+    "on_parts": [
+     "AWP_Barrel"
+    ],
+    "name_is_unique": true
+   },
+   "pools": [
+    "GD_Itempools.WeaponPools.Pool_Weapons_SniperRifles_06_Legendary"
+   ],
+   "suppress_prefix": true
+  }
+ ],
+ "extra_packages": [
+  {
+   "name": "PipelineTexturesAWP",
+   "file": "../scratch/PipelineTexturesAWP.upk"
+  }
+ ],
+ "materials": [
+  {
+   "name": "Mati_AWP",
+   "outer": "Common_GunMaterials.Materials.sniper",
+   "parent": "Item_ClassMods.Mat.Master_ClassMod",
+   "texture_parameters": {
+    "p_Diffuse": "PipelineTexturesAWP.AWP_Albedo",
+    "p_Normal": "PipelineTexturesAWP.AWP_Normal"
+   },
+   "vector_parameters": {},
+   "scalar_parameters": {}
+  }
+ ]
+}

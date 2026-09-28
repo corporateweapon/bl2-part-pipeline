@@ -1,0 +1,27 @@
+name: tests
+
+on:
+  push:
+  pull_request:
+
+jobs:
+  offline:
+    # Everything that needs no game files, no Blender and no gildor tools: the codecs on
+    # synthetic data, the linter, the emitter driven against tests/fakes, the retarget
+    # geometry, preflight, triage, the bl2 front door. Tests that need scratch/decomp,
+    # Blender or umodel skip themselves.
+    runs-on: windows-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - run: python -m pip install -e ".[test]"
+      - run: python -m pytest tests -q
+      - run: python bl2.py --dry build boxgun
+      # the Armory release and the Boxgun pack build (no .upk in CI: -check zips)
+      - run: python bl2.py pack boxgun --no-packages
+      - run: python bl2.py armory --no-packages
+      - run: python -m bl2_retarget check recipes/boxgun.json
+        env:
+          PYTHONPATH: src

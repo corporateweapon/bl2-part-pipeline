@@ -1,0 +1,300 @@
+{
+ "schema_version": 1,
+ "mod": {
+  "name": "PipelineBOXGUNSpawn",
+  "author": "44M0N",
+  "version": "0.1.0",
+  "description": "The Boxgun: the pipeline's own CC0 example weapon (examples/boxgun/model.glb, built from primitives by examples/boxgun/make_boxgun.py) as four assault-rifle parts on its own balance. It exists to prove and ship the pipeline without any third-party art."
+ },
+ "package": "PipelineMeshesBoxgun",
+ "mesh_path": "PipelineMeshesBoxgun.PL_AR_Gestalt_Mesh",
+ "package_file": "../scratch/PipelineMeshesBoxgun.upk",
+ "weapon_type": "AssaultRifle",
+ "fragments": [
+  {
+   "name": "BOXGUN_Barrel",
+   "template_fragment": "AR_Barrel_Vladof",
+   "first_index": 68319,
+   "num_primitives": 58,
+   "dz": 0.0,
+   "sockets": "all",
+   "dz_sockets": [],
+   "socket_overrides": {
+    "Muzzle": [
+     0.0,
+     -60.029,
+     7.304
+    ],
+    "FrontSight": [
+     0.5,
+     -56.029,
+     13.804
+    ],
+    "EyeSocket2": [
+     -0.0,
+     40.0,
+     10.739
+    ]
+   },
+   "bounds_override": {
+    "origin": [
+     0.0,
+     -40.029,
+     9.954
+    ],
+    "extent": [
+     1.2,
+     20.0,
+     3.85
+    ],
+    "radius": 20.403
+   }
+  },
+  {
+   "name": "BOXGUN_Body",
+   "template_fragment": "AR_Body_Vladof",
+   "first_index": 68085,
+   "num_primitives": 78,
+   "dz": 0.0,
+   "sockets": "all",
+   "dz_sockets": [],
+   "socket_overrides": {
+    "RearSight": [
+     1.0,
+     -9.029,
+     12.304
+    ],
+    "EjectPort": [
+     3.0,
+     -5.529,
+     8.554
+    ]
+   },
+   "bounds_override": {
+    "origin": [
+     1.0,
+     -5.029,
+     1.304
+    ],
+    "extent": [
+     3.0,
+     15.0,
+     11.0
+    ],
+    "radius": 18.841
+   }
+  },
+  {
+   "name": "BOXGUN_Grip",
+   "template_fragment": "AR_Grip_Vladof",
+   "first_index": 68493,
+   "num_primitives": 10,
+   "dz": 0.0,
+   "sockets": "all",
+   "dz_sockets": [],
+   "bounds_override": {
+    "origin": [
+     0.0,
+     7.221,
+     -2.446
+    ],
+    "extent": [
+     1.2,
+     2.25,
+     4.25
+    ],
+    "radius": 4.956
+   }
+  },
+  {
+   "name": "BOXGUN_Stock",
+   "template_fragment": "AR_Stock_Vladof",
+   "first_index": 68523,
+   "num_primitives": 10,
+   "dz": 0.0,
+   "sockets": "all",
+   "dz_sockets": [],
+   "bounds_override": {
+    "origin": [
+     0.0,
+     22.971,
+     6.054
+    ],
+    "extent": [
+     1.6,
+     13.0,
+     3.25
+    ],
+    "radius": 13.495
+   }
+  }
+ ],
+ "parts": [
+  {
+   "part_name": "BOXGUN_Barrel",
+   "slot": "WP_Barrel",
+   "outer": "GD_Weap_AssaultRifle.Barrel",
+   "fragment": "BOXGUN_Barrel",
+   "template_part": "GD_Weap_AssaultRifle.Barrel.AR_Barrel_Vladof_Shredifier",
+   "register_in": [],
+   "overrides": {
+    "properties": {
+     "bIsSpinningEnabled": false,
+     "NumPhysicalBarrelsToFireFrom": 1
+    },
+    "weapon_attribute_effects": [
+     {
+      "attribute": "D_Attributes.Weapon.WeaponDamage",
+      "modifier": "MT_Scale",
+      "value": 0.18
+     }
+    ]
+   }
+  },
+  {
+   "part_name": "BOXGUN_Body",
+   "slot": "WP_Body",
+   "outer": "GD_Weap_AssaultRifle.Body",
+   "fragment": "BOXGUN_Body",
+   "template_part": "GD_Weap_AssaultRifle.Body.AR_Body_Vladof_4",
+   "register_in": []
+  },
+  {
+   "part_name": "BOXGUN_Grip",
+   "slot": "WP_Grip",
+   "outer": "GD_Weap_AssaultRifle.Grip",
+   "fragment": "BOXGUN_Grip",
+   "template_part": "GD_Weap_AssaultRifle.Grip.AR_Grip_Vladof",
+   "register_in": [],
+   "overrides": {
+    "clear_arrays": [
+     "PrefixList"
+    ]
+   }
+  },
+  {
+   "part_name": "BOXGUN_Stock",
+   "slot": "WP_Stock",
+   "outer": "GD_Weap_AssaultRifle.Stock",
+   "fragment": "BOXGUN_Stock",
+   "template_part": "GD_Weap_AssaultRifle.Stock.AR_Stock_Vladof",
+   "register_in": []
+  },
+  {
+   "part_name": "BOXGUN_Sight",
+   "slot": "WP_Sight",
+   "outer": "GD_Weap_AssaultRifle.Sight",
+   "fragment": null,
+   "template_part": "GD_Weap_AssaultRifle.Sight.AR_Sight_None",
+   "register_in": [],
+   "overrides": {
+    "weapon_attribute_effects": [],
+    "zoom_weapon_attribute_effects": [
+     {
+      "attribute": "D_Attributes.Weapon.WeaponSpread",
+      "modifier": "MT_Scale",
+      "value": -0.5
+     }
+    ],
+    "zoom_external_attribute_effects": [
+     {
+      "attribute": "D_Attributes.GameplayAttributes.PlayerCriticalHitBonus",
+      "modifier": "MT_Scale",
+      "value": 1.0
+     }
+    ]
+   }
+  },
+  {
+   "part_name": "BOXGUN_Accessory",
+   "slot": "WP_Elemental",
+   "outer": "GD_Weap_AssaultRifle.Accessory",
+   "fragment": null,
+   "template_part": "GD_Weap_AssaultRifle.Accessory.AR_Accessory_None",
+   "register_in": []
+  },
+  {
+   "part_name": "BOXGUN_Material",
+   "slot": "WP_Material",
+   "outer": "GD_Weap_AssaultRifle.ManufacturerMaterials",
+   "fragment": null,
+   "template_part": "GD_Weap_AssaultRifle.ManufacturerMaterials.Mat_Vladof_5_Legendary",
+   "register_in": []
+  },
+  {
+   "part_name": "BOXGUN_Elemental_None",
+   "slot": "WP_Elemental",
+   "outer": "GD_Weap_AssaultRifle.elemental",
+   "fragment": null,
+   "template_part": "GD_Weap_AssaultRifle.elemental.AR_Elemental_None",
+   "register_in": []
+  }
+ ],
+ "options": {
+  "register_at": "menu",
+  "keep_alive": true,
+  "save_roundtrip": true,
+  "validate_override": true,
+  "test_harness": true,
+  "force_template_fragment_on_map_load": null,
+  "menu_ticks": 600,
+  "harness_auto": false,
+  "status_path": null,
+  "harness_keys": [
+   "F5",
+   "F6",
+   "F7",
+   "F8"
+  ],
+  "own_gestalt": true,
+  "save_package": "PipelineMeshes"
+ },
+ "balances": [
+  {
+   "name": "AR_Vladof_5_BOXGUN",
+   "outer": "GD_Weap_AssaultRifle.A_Weapons_Legendary",
+   "template_balance": "GD_Weap_AssaultRifle.A_Weapons_Legendary.AR_Vladof_5_Sherdifier",
+   "part_lists": {
+    "BarrelPartData": [
+     "BOXGUN_Barrel"
+    ],
+    "BodyPartData": [
+     "BOXGUN_Body"
+    ],
+    "GripPartData": [
+     "BOXGUN_Grip"
+    ],
+    "StockPartData": [
+     "BOXGUN_Stock"
+    ],
+    "SightPartData": [
+     "BOXGUN_Sight"
+    ],
+    "Accessory1PartData": [
+     "BOXGUN_Accessory"
+    ],
+    "MaterialPartData": [
+     "BOXGUN_Material"
+    ],
+    "ElementalPartData": [
+     "BOXGUN_Elemental_None"
+    ]
+   },
+   "title": {
+    "name": "Title_Legendary_BOXGUN",
+    "outer": "GD_Weap_AssaultRifle.Name.Title_Vladof",
+    "template": "GD_Weap_AssaultRifle.Name.Title_Vladof.Title_Legendary_Shredifier",
+    "part_name": "Boxgun",
+    "red_text": "Some assembly required.<br><font color=\"#5ff5ff\">Nine primitives. One recipe.</font><br><font color=\"#ffffff\">The pipeline's own example weapon</font>",
+    "on_parts": [
+     "BOXGUN_Barrel"
+    ],
+    "name_is_unique": true
+   },
+   "pools": [
+    "GD_Itempools.WeaponPools.Pool_Weapons_AssaultRifles_06_Legendary"
+   ],
+   "suppress_prefix": true
+  }
+ ]
+}

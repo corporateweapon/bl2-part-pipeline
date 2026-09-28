@@ -1,0 +1,59 @@
+{
+ "schema_version": 1,
+ "mod": {
+  "name": "PipelineBentBarrelHarness",
+  "author": "44M0N",
+  "version": "0.3.0",
+  "description": "Verify-loop harness variant of PipelineBentBarrel (auto grant/equip/camera, status records)."
+ },
+ "package": "PipelineMeshes",
+ "mesh_path": "PipelineMeshes.PL_AR_Gestalt_Mesh",
+ "package_file": "../scratch/PipelineMeshes_m2.upk",
+ "weapon_type": "AssaultRifle",
+ "fragments": [
+  {
+   "name": "AR_Barrel_PL_Bent",
+   "template_fragment": "AR_Barrel_Vladof",
+   "first_index": 68085,
+   "num_primitives": 1164,
+   "dz": 8.0,
+   "sockets": [
+    "Muzzle",
+    "EyeSocket2",
+    "FrontSight"
+   ],
+   "dz_sockets": [
+    "Muzzle"
+   ]
+  }
+ ],
+ "parts": [
+  {
+   "part_name": "AR_Barrel_PL_Bent",
+   "slot": "WP_Barrel",
+   "outer": "GD_Weap_AssaultRifle.Barrel",
+   "fragment": "AR_Barrel_PL_Bent",
+   "template_part": "GD_Weap_AssaultRifle.Barrel.AR_Barrel_Vladof_Shredifier",
+   "register_in": [
+    {
+     "balance": "GD_Weap_AssaultRifle.A_Weapons_Legendary.AR_Vladof_5_Sherdifier",
+     "field": "BarrelPartData"
+    }
+   ]
+  }
+ ],
+ "options": {
+  "register_at": "menu",
+  "keep_alive": true,
+  "save_roundtrip": true,
+  "validate_override": true,
+  "test_harness": true,
+  "force_template_fragment_on_map_load": "AR_Barrel_Vladof",
+  "menu_ticks": 600,
+  "harness_auto": true,
+  "harness_fov": 100,
+  "harness_behindview": true,
+  "status_path": "${REPO}\\scratch\\PipelineBentBarrelHarness_status.json"
+ },
+ "mod_name": "PipelineBentBarrel"
+}
